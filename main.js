@@ -2,7 +2,7 @@ var  app = new Vue({
   el: '#app',
   data: {
     product: 'Socks',
-    image: './assets/Socks.jpg',
+    image: './assets/socks-green.jpg',
     altText: 'A pair of socks',
     inStock: true,
     details: [
@@ -13,26 +13,28 @@ var  app = new Vue({
     variants: [
       {
         variantId: 2234,
-        variantColor: "green"
+        variantColor: 'green',
+        variantImage: './assets/socks-green.jpg',
       },
       {
         variantId: 2235,
-        variantColor: "blue"
+        variantColor: 'blue',
+        variantImage: './assets/socks-blue.jpg',
       },
     ],
-    sizes: [
-      {
-        id: 111,
-        name: "small",
-      },
-      {
-        id: 112,
-        name: "middle",
-      },
-      {
-        id: 113,
-        name: "large",
+    cart: 0,
+  },
+  methods: {
+    addToCart: function(){
+      this.cart += 1;
+    },
+    removeFromCart: function(){
+      if (this.cart > 0) {
+        this.cart -= 1;
       }
-    ],
+    },
+    updateProduct: function(variantImage){
+      this.image = variantImage;
+    }
   }
 });
