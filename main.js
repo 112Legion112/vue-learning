@@ -4,6 +4,7 @@ var  app = new Vue({
     product: 'Socks',
     image: './assets/Socks.jpg',
     altText: 'A pair of socks',
-    link: 'https://twitter.com/Max77385676',
+    inStock: true,
+    onSale: true,
   }
 });

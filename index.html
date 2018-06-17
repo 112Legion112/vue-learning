@@ -15,10 +15,10 @@
       </div>
 
       <div class="product-info">
-            <h1>{{ product }}</h1>
+          <h1>{{ product }}</h1>
+          <p v-show="inStock">In stock. <span v-if="onSale">On sale!<span></p>
       </div>
     </div>
-    <a :href="link">Go to my twitter!</a>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
   <script src="main.js"></script>
