@@ -45,10 +45,6 @@ Vue.component('product', {
           :class="{ disabledButton: !inStock}">Add to Cart</button>
         <button @click="removeFromCart">Remove from Cart</button>
 
-        <div class="cart">
-          <p>Cart({{cart}})</p>
-        </div>
-
     </div>
   </div>
   `,
@@ -75,20 +71,17 @@ Vue.component('product', {
           variantId: 2235,
           variantColor: 'blue',
           variantImage: './assets/socks-blue.jpg',
-          variantQuantity: 0,
+          variantQuantity: 2,
         },
       ],
-      cart: 0,
     };
   },
   methods: {
     addToCart: function(){
-      this.cart += 1;
+      this.$emit('add-to-cart', this.variants[this.selectedVariant].variantId);
     },
     removeFromCart: function(){
-      if (this.cart > 0) {
-        this.cart -= 1;
-      }
+      this.$emit('remove-from-cart', this.variants[this.selectedVariant].variantId);
     },
     updateProduct: function(index){
       this.selectedVariant = index;
@@ -122,6 +115,18 @@ Vue.component('product', {
 var  app = new Vue({
   el: '#app',
   data: {
+    cart: [],
     premium: false,
+  },
+  methods: {
+    addToCart(id) {
+      this.cart.push(id);
+    },
+    removeFromCart(id) {
+      var index = this.cart.indexOf(id);
+      if (index > -1){
+        this.cart.splice(index, 1);
+      }
+    }
   }
 });
